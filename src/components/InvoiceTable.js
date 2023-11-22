@@ -1,7 +1,13 @@
 import React from 'react';
 import TableRow from './InvoiceTableRow';
 
-function SimpleTable({ header, tableData, onRowClick, multiple = false }) {
+function SimpleTable({
+  header,
+  tableData,
+  onRowClick,
+  usdToClpExchange,
+  multiple = false,
+}) {
   const [selectedRows, setSelectedRows] = React.useState(multiple ? [] : null);
 
   function handleRadioClick(id) {
@@ -29,6 +35,7 @@ function SimpleTable({ header, tableData, onRowClick, multiple = false }) {
               multiple ? selectedRows.includes(row.id) : selectedRows === row.id
             }
             onRowClick={() => handleRadioClick(row.id)}
+            usdToClpExchange={usdToClpExchange}
             isUpperRow={index === 0}
             isLowerRow={index === tableData.length - 1}
           />

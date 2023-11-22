@@ -5,11 +5,18 @@ function TableRow({
   row,
   selected,
   onRowClick,
+  usdToClpExchange,
   isUpperRow = false,
   isLowerRow = false,
 }) {
+  const clpAmount =
+    row.currency === 'USD' ? row.amount * usdToClpExchange : row.amount;
+  const usdAmount =
+    row.currency === 'CLP'
+      ? (row.amount / usdToClpExchange).toFixed(1)
+      : row.amount;
+
   return (
-    //
     <div
       className={classNames('p-4 flex justify-between border', {
         'bg-violet-100 border-indigo-400': selected,
@@ -28,15 +35,15 @@ function TableRow({
             onChange={onRowClick}
           />
           <div className={classNames('', { 'text-indigo-600': selected })}>
-            {row.field1}
+            {`${row.id} (${row.organization_id})`}
           </div>
         </div>
       </div>
+      <div
+        className={classNames({ 'text-indigo-600': selected })}
+      >{`$${clpAmount} CLP ($${usdAmount} USD)`}</div>
       <div className={classNames({ 'text-indigo-600': selected })}>
-        {row.field2}
-      </div>
-      <div className={classNames({ 'text-indigo-600': selected })}>
-        {row.field3}
+        {row.type === 'received' ? 'Recibida' : row.reference}
       </div>
     </div>
   );
