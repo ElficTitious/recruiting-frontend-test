@@ -11,14 +11,14 @@ function TableRow({
   return (
     //
     <div
-      className={classNames('p-4 flex justify-between items-center border', {
+      className={classNames('p-4 flex justify-between border', {
         'bg-violet-100 border-indigo-400': selected,
         'rounded-t-lg': isUpperRow,
         'rounded-b-lg': isLowerRow,
       })}
     >
       <div>
-        <div className="p-4 flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
           <input
             type="radio"
             name="radioButton"
