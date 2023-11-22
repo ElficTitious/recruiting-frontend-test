@@ -32,6 +32,7 @@ function TableRow({
             name={radioButtonName}
             className="text-indigo-600 focus:ring-indigo-600"
             value={row.id}
+            readOnly
             checked={selected}
             onClick={onRowClick}
           />
