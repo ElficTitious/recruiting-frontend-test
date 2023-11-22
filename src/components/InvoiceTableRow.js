@@ -25,7 +25,7 @@ function TableRow({
         'rounded-b-lg': isLowerRow,
       })}
     >
-      <div>
+      <div className="flex-1 text-left">
         <div className="flex items-center space-x-4">
           <input
             type="radio"
@@ -41,9 +41,15 @@ function TableRow({
         </div>
       </div>
       <div
-        className={classNames({ 'text-indigo-600': selected })}
+        className={classNames('flex-1 text-center', {
+          'text-indigo-600': selected,
+        })}
       >{`$${clpAmount} CLP ($${usdAmount} USD)`}</div>
-      <div className={classNames({ 'text-indigo-600': selected })}>
+      <div
+        className={classNames('flex-1 text-right', {
+          'text-indigo-600': selected,
+        })}
+      >
         {row.type === 'received' ? 'Recibida' : row.reference}
       </div>
     </div>
