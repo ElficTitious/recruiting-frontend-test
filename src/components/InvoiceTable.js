@@ -4,14 +4,12 @@ import TableRow from './InvoiceTableRow';
 function SimpleTable({
   header,
   tableData,
-  onRowClick,
+  selectedRows,
+  setSelectedRows,
   usdToClpExchange,
   multiple = false,
 }) {
-  const [selectedRows, setSelectedRows] = React.useState(multiple ? [] : null);
-
   function handleRadioClick(id) {
-    onRowClick(id);
     if (multiple) {
       if (selectedRows.includes(id)) {
         setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
@@ -19,7 +17,11 @@ function SimpleTable({
         setSelectedRows([...selectedRows, id]);
       }
     } else {
-      setSelectedRows(id);
+      if (selectedRows === id) {
+        setSelectedRows(null);
+      } else {
+        setSelectedRows(id);
+      }
     }
   }
 
@@ -43,6 +45,7 @@ function SimpleTable({
               }
               onRowClick={() => handleRadioClick(row.id)}
               usdToClpExchange={usdToClpExchange}
+              radioButtonName={multiple ? row.id : 'radioButton'}
               isUpperRow={index === 0}
               isLowerRow={index === tableData.length - 1}
             />

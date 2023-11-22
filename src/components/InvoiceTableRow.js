@@ -6,6 +6,7 @@ function TableRow({
   selected,
   onRowClick,
   usdToClpExchange,
+  radioButtonName,
   isUpperRow = false,
   isLowerRow = false,
 }) {
@@ -28,11 +29,11 @@ function TableRow({
         <div className="flex items-center space-x-4">
           <input
             type="radio"
-            name="radioButton"
+            name={radioButtonName}
             className="text-indigo-600 focus:ring-indigo-600"
             value={row.id}
             checked={selected}
-            onChange={onRowClick}
+            onClick={onRowClick}
           />
           <div className={classNames('', { 'text-indigo-600': selected })}>
             {`${row.id} (${row.organization_id})`}
